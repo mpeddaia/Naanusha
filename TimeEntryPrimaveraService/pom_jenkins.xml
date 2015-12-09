@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>it.CITS.DFT.DFT-CI-Jenkins</groupId>
+	<artifactId>tep6srvc</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+	<name>CC_CSD_DCPLITE_INTG</name>
+	<build>
+		<plugins>
+
+	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+					<compilerArguments>
+						<extdirs>lib</extdirs>
+					</compilerArguments>
+				</configuration>
+
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.5.10.201208310627</version>
+				<configuration>
+				<destFile>${basedir}/target/jacoco.exec</destFile>
+				<dataFile>${basedir}/target/jacoco.exec</dataFile>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+				    		 <goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution> 
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals> 
+							<goal>report</goal> 
+						</goals> 
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+				<!-- jenkins junit  -->
+				<argLine>
+				${argLine} -javaagent:${basedir}/src/lib/jmockit-0.999.17.jar
+				</argLine>
+				<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+		</plugins>
+		<finalName>tep6srvc</finalName>
+	</build>
+	<properties>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+	</properties>
+	<repositories>
+		<repository>
+			<id>Central</id>
+			<name>Cisco Central Repository</name>
+			<url>http://repo-art.cisco.com/artifactory/cisco-shared-libs-local</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+
+		<repository>
+			<id>bms-artifactory</id>
+			<url>http://engci-maven-master.cisco.com/artifactory/itabs-sef-repo</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<groupId>it.cits.customercare.csd.tews</groupId>
+			<artifactId>tecommonlib</artifactId>
+			<version>1.0.4</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
+		<dependency>
+			<groupId>intgserver.jar</groupId>
+			<artifactId>intgserver.jar</artifactId>
+			<version>1.0.0</version>
+			<systemPath>${basedir}/src/lib/intgserver.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<dependency>
+			<groupId>backport-util-concurrent</groupId>
+			<artifactId>backport-util-concurrent</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/lib/ojdbc6.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.cisco.framework</groupId>
+			<artifactId>ciscosdf</artifactId>
+			<version>3.6</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+		<dependency>
+		<groupId>com.googlecode.jmockit</groupId>
+		<artifactId>jmockit</artifactId>
+		<version>0.999.17</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.maven.surefire</groupId>
+		<artifactId>surefire-junit47</artifactId>
+		<version>2.12</version>
+	</dependency>		
+</dependencies>
+
+
+</project>

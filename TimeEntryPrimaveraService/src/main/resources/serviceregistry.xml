@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceRegistry xmlns="http://www.cisco.com/serviceframework/serviceregistry"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.cisco.com/serviceframework/serviceregistry/serviceregistry.xsd">
+	
+	<!-- Service name: Time Entry Primavera Service -->
+	<ServiceMeta serviceName="TimeEntryPrimaveraService" type="pojo"
+		domainName="BusinessService" enableSchemaValidation="false" enableSLA="false" messageType="xml">
+		<ClassName>com.cisco.dcpte.service.impl.TimeEntryPrimaveraServiceImpl</ClassName>
+		<Transport>http</Transport>
+		<SchemaLocation>DCPTimeEntryProfile.xsd</SchemaLocation>
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+
+	<!-- Client -->
+	<ServiceMeta serviceName="TimeEntryPrimaveraServiceProxy" type="wsProxy"
+		domainName="RemoteWSService" enableSchemaValidation="false" enableSLA="false" messageType="xml">
+		<ClassName>com.cisco.dcpte.service.ITimeEntryPrimaveraService</ClassName>
+		<Parameter name="endpointUrl"
+			value="http://wsgi-dev.cisco.com/as/dte/TimeEntryPrimaveraService/" />
+	</ServiceMeta>
+	
+		<!-- Service name: Time Entry EmanService -->
+	<ServiceMeta serviceName="EmanService" type="pojo"
+		domainName="BusinessService" enableSchemaValidation="false" enableSLA="false" messageType="xml">
+		<ClassName>com.cisco.dcpte.service.impl.EmanServiceImpl</ClassName>
+		<Transport>http</Transport>
+		<SchemaLocation>DCPTimeEntryProfile.xsd</SchemaLocation>
+		<Parameter name="doclitBare" value="true" />
+	</ServiceMeta>
+
+	<!-- Client -->
+	<ServiceMeta serviceName="EmanServiceProxy" type="wsProxy"
+		domainName="RemoteWSService" enableSchemaValidation="false" enableSLA="false" messageType="xml">
+		<ClassName>com.cisco.dcpte.service.IEmanService</ClassName>
+		<Parameter name="endpointUrl"
+			value="http://wsgi-dev.cisco.com/as/dte/EmanService/" />
+	</ServiceMeta>
+</ServiceRegistry>
